@@ -71,9 +71,6 @@ function forward_motor_1 () {
 }
 radio.setGroup(1)
 hummingbird.startHummingbird()
-let red = 255
-let green = 5
-let blue = 5
 basic.forever(function () {
     if (input.isGesture(Gesture.ScreenUp)) {
         radio.sendString("forward")
@@ -86,18 +83,4 @@ basic.forever(function () {
     } else {
         radio.sendString("stop")
     }
-})
-basic.forever(function () {
-    hummingbird.setTriLED(
-    TwoPort.One,
-    red,
-    green,
-    blue
-    )
-    hummingbird.setTriLED(
-    TwoPort.Two,
-    red,
-    green,
-    blue
-    )
 })
