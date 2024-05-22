@@ -27,9 +27,11 @@ radio.onReceivedString(function (receivedString) {
         both_motors_stop()
     }
 })
+// S2 motor on driver right side of robot
 function forward_motor_2 () {
     hummingbird.setRotationServo(FourPort.Two, -100)
 }
+// S1 motor on driver left
 function forward_motor_1 () {
     hummingbird.setRotationServo(FourPort.One, 100)
 }
