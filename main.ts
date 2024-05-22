@@ -12,55 +12,19 @@ radio.onReceivedString(function (receivedString) {
     if (receivedString == "forward") {
         forward_motor_1()
         forward_motor_2()
-        basic.showLeds(`
-            . . # . .
-            . # . # .
-            # . . . #
-            . . . . .
-            . . . . .
-            `)
     } else if (receivedString == "right") {
-        backward_motor_1()
-        forward_motor_2()
-        basic.showLeds(`
-            . . # . .
-            . . . # .
-            . . . . #
-            . . . # .
-            . . # . .
-            `)
-    } else if (receivedString == "left") {
         forward_motor_1()
         backward_motor_2()
-        basic.showLeds(`
-            . . # . .
-            . # . . .
-            # . . . .
-            . # . . .
-            . . # . .
-            `)
+    } else if (receivedString == "left") {
+        backward_motor_1()
+        forward_motor_2()
     } else if (receivedString == "back") {
         backward_motor_1()
         backward_motor_2()
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            # . . . #
-            . # . # .
-            . . # . .
-            `)
     } else if (receivedString == "stop") {
         both_motors_stop()
-        basic.showLeds(`
-            # . . . #
-            . # . # .
-            . . # . .
-            . # . # .
-            # . . . #
-            `)
     } else {
         both_motors_stop()
-        basic.clearScreen()
     }
 })
 function forward_motor_2 () {
@@ -72,15 +36,50 @@ function forward_motor_1 () {
 radio.setGroup(1)
 hummingbird.startHummingbird()
 basic.forever(function () {
-    if (input.isGesture(Gesture.ScreenUp)) {
-        radio.sendString("forward")
+    if (input.buttonIsPressed(Button.AB)) {
+        radio.sendString("back")
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            # . . . #
+            . # . # .
+            . . # . .
+            `)
     } else if (input.isGesture(Gesture.TiltRight)) {
         radio.sendString("right")
+        basic.showLeds(`
+            . . # . .
+            . . . # .
+            . . . . #
+            . . . # .
+            . . # . .
+            `)
     } else if (input.isGesture(Gesture.TiltLeft)) {
         radio.sendString("left")
-    } else if (input.buttonIsPressed(Button.AB)) {
-        radio.sendString("back")
+        basic.showLeds(`
+            . . # . .
+            . # . . .
+            # . . . .
+            . # . . .
+            . . # . .
+            `)
+    } else if (input.isGesture(Gesture.ScreenUp)) {
+        radio.sendString("forward")
+        basic.showLeds(`
+            . . # . .
+            . # . # .
+            # . . . #
+            . . . . .
+            . . . . .
+            `)
     } else {
         radio.sendString("stop")
+        basic.showLeds(`
+            # . . . #
+            . # . # .
+            . . # . .
+            . # . # .
+            # . . . #
+            `)
     }
 })
