@@ -35,53 +35,19 @@ function forward_motor_2 () {
 function forward_motor_1 () {
     hummingbird.setRotationServo(FourPort.One, 100)
 }
-radio.setGroup(1)
+// Update the radio group number to a new number. No one else should have the same number as your code.
+radio.setGroup(6)
 hummingbird.startHummingbird()
 basic.forever(function () {
     if (input.buttonIsPressed(Button.AB)) {
         radio.sendString("back")
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            # . . . #
-            . # . # .
-            . . # . .
-            `)
     } else if (input.isGesture(Gesture.TiltRight)) {
         radio.sendString("right")
-        basic.showLeds(`
-            . . # . .
-            . . . # .
-            . . . . #
-            . . . # .
-            . . # . .
-            `)
     } else if (input.isGesture(Gesture.TiltLeft)) {
         radio.sendString("left")
-        basic.showLeds(`
-            . . # . .
-            . # . . .
-            # . . . .
-            . # . . .
-            . . # . .
-            `)
     } else if (input.isGesture(Gesture.ScreenUp)) {
         radio.sendString("forward")
-        basic.showLeds(`
-            . . # . .
-            . # . # .
-            # . . . #
-            . . . . .
-            . . . . .
-            `)
     } else {
         radio.sendString("stop")
-        basic.showLeds(`
-            # . . . #
-            . # . # .
-            . . # . .
-            . # . # .
-            # . . . #
-            `)
     }
 })
